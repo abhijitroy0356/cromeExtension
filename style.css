@@ -24,8 +24,37 @@
     border: none;
     padding: 20px;
     background-color: rgb(19, 129, 146);
+    margin: 20px;
+}
+#btn2{
+    font-size: 20px;
+    border-radius: 10px;
+    border: none;
+    padding: 20px;
+    background-color: rgb(19, 129, 146);
+    margin: 20px;
 }
 #btn:hover{
+    font-size: 20px;
+    background-color: rgb(143, 225, 231);
+    color: white;
+    transition: 0.1s;
+}
+#btn2:hover{
+    font-size: 20px;
+    background-color: rgb(143, 225, 231);
+    color: white;
+    transition: 0.1s;
+}
+#save{
+     font-size: 20px;
+    border-radius: 10px;
+    border: none;
+    padding: 20px;
+    background-color: rgb(19, 129, 146);
+    margin: 20px;
+}
+#save:hover{
     font-size: 20px;
     background-color: rgb(143, 225, 231);
     color: white;

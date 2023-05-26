@@ -1,24 +1,42 @@
 const inputbtn = document.getElementById("btn");
 const inputel = document.getElementById("input-id");
 const listContent = document.getElementById("listFun");
+const deleteUl= document.getElementById("btn2");
+const saveUl=document.getElementById("save");
 let track = [];
-let displayTrack=[];
+// let displayTrack=[];
+const validation= JSON.parse(localStorage.getItem("track"));
+if(validation){
+  track=validation
+  fun(track);
+}
 inputbtn.addEventListener("click", function () {
   track.push(inputel.value)
   inputel.value = "";
   localStorage.setItem("track",JSON.stringify(track));
-  let ref=JSON.parse(localStorage.getItem("track"));
-  displayTrack.push(ref);
-  console.log(displayTrack)
-  fun();
+  // let ref=JSON.parse(localStorage.getItem("track"));
+  // displayTrack.push(ref);
+  
+  fun(track);
 });
-
-function fun() {
+deleteUl.addEventListener("dblclick",function(){
+  localStorage.clear();
+  track=[];
+  fun(track);
+})
+saveUl.addEventListener("click",function(){
+  chrome.tabs.query({active:true,currentWindow:true},function(tabs){
+    track.push(tabs[0].url);
+    localStorage.setItem("track",JSON.stringify(track));
+    fun(track);
+  })
+})
+function fun(trackinfo) {
   let lists = "";
-  for (var i = 0; i < track.length; i++) {
+  for (var i = 0; i < trackinfo.length; i++) {
     // lists+="<li><a target='_blank'href='"+track[i]+"'>"+ track[i]+"</a></li>"
     lists += `<li>
-                 <a target='_blank' style='color:green' href='${track[i]}'>${track[i]}</a>
+                 <a target='_blank' style='color:green' href='${trackinfo[i]}'>${trackinfo[i]}</a>
                 
                 </li>
                 `;
